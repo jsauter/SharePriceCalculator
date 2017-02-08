@@ -71,7 +71,7 @@ namespace SharePriceCalculator
             
             var result = _inputReaderService.ReadInput(stdin);
 
-            var stdOut = _outputRendererService.GenerateOutput(result.MarketPrice, result.ShareRecords, result.EmployeeBonuses);
+            var stdOut = _outputRendererService.GenerateOutput(result.MarketPrice, result.ShareRecords, result.EmployeeBonuses, result.SaleRecords);
 
             Console.WriteLine(stdOut);            
         }

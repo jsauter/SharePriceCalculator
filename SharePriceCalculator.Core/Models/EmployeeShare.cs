@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SharePriceCalculator.Core.Models
 {
@@ -18,8 +19,7 @@ namespace SharePriceCalculator.Core.Models
             if(employeeBonus != null)
                 return CalculatePrice(marketPrice, employeeBonus.BonusDate > VestDate ? employeeBonus.Multiplier : 1.00M);
 
-            return CalculatePrice(marketPrice, 1.00M);
-            
+            return CalculatePrice(marketPrice, 1.00M);            
         }
 
         private decimal CalculatePrice(MarketPrice marketPrice, decimal bonusMultiplier)

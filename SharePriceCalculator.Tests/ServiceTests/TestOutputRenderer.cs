@@ -44,7 +44,7 @@ namespace SharePriceCalculator.Tests.ServiceTests
 
             var bonuses = new List<EmployeeBonus>();
 
-            var result = outputRenderer.GenerateOutput(marketPrice, employeeList, bonuses);
+            var result = outputRenderer.GenerateOutput(marketPrice, employeeList, bonuses, new List<EmployeeSale>());
 
             var resultCount = result.Split('\n').Length;
 

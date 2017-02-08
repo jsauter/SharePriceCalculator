@@ -9,7 +9,7 @@ namespace SharePriceCalculator.Services
 {
     public class OutputRendererService : IOutputRendererService
     {
-        public string GenerateOutput(MarketPrice marketPrice, List<EmployeeShare> employeeShares, List<EmployeeBonus> employeeBonuses)
+        public string GenerateOutput(MarketPrice marketPrice, List<EmployeeShare> employeeShares, List<EmployeeBonus> employeeBonuses, List<EmployeeSale> sale)
         {
             var mergedEmployeeShares = from e in employeeShares
                 group e by new {e.EmployeeId}
@@ -17,7 +17,8 @@ namespace SharePriceCalculator.Services
                 select new
                 {
                     Id = g.Key.EmployeeId,
-                    Total = g.Sum(p => p.CalculateGain(marketPrice, employeeBonuses.FirstOrDefault(x => x.EmployeeId == g.Key.EmployeeId)))
+                    Total = g.Sum(p => p.CalculateGain(marketPrice, employeeBonuses.FirstOrDefault(x => x.EmployeeId == g.Key.EmployeeId))),
+                    SalesTotal = sale.Sum(x => x.CalculateSale(employeeShares.Where(y => y.EmployeeId == g.Key.EmployeeId).ToList(), employeeBonuses.Where(z => z.EmployeeId == g.Key.EmployeeId).ToList()))
                 };
         
             var output = new StringBuilder();
@@ -28,7 +29,7 @@ namespace SharePriceCalculator.Services
                 output.Append(",");
                 output.Append(employeeShare.Total);
                 output.Append(",");
-                output.Append(employeeShare.Total);                
+                output.Append(employeeShare.SalesTotal);                
                 output.Append(Environment.NewLine);
             }
 

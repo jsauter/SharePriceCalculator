@@ -5,6 +5,6 @@ namespace SharePriceCalculator.Services
 {
     public interface IOutputRendererService
     {
-        string GenerateOutput(MarketPrice marketPrice, List<EmployeeShare> employeeShares, List<EmployeeBonus> employeeBonuses);
+        string GenerateOutput(MarketPrice marketPrice, List<EmployeeShare> employeeShares, List<EmployeeBonus> employeeBonuses, List<EmployeeSale> sales);
     }
 }
