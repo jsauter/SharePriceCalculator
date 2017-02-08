@@ -16,6 +16,8 @@ Unit tests are in place for most of the complex business logic areas and are all
 Input will come in via stdin in the formats that were provided in the example. It will handle all the use cases.
 
 Output is piped to the stdout.
+
+I tested it by running SharePriceCalculator.exe < someinputfile.txt
  
 ##Building and Running
 
