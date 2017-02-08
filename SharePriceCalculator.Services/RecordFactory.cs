@@ -13,41 +13,43 @@ namespace SharePriceCalculator.Services
             switch (type)
             {
                 case "VEST":
-                    var newShareRecord = new EmployeeShare();
-
-                    newShareRecord.Action = csvReader.GetField<string>(0);
-                    newShareRecord.EmployeeId = csvReader.GetField<string>(1);
-
-                    newShareRecord.VestDate = DateTime.ParseExact(csvReader.GetField<string>(2), "yyyyMMdd",
-                        CultureInfo.InvariantCulture, DateTimeStyles.None);
-                    newShareRecord.NumberOfUnits = csvReader.GetField<int>(3);
-                    newShareRecord.GrantPrice = csvReader.GetField<decimal>(4);
-
+                    var newShareRecord = new EmployeeShare
+                    {
+                        Action = csvReader.GetField<string>(0),
+                        EmployeeId = csvReader.GetField<string>(1),
+                        VestDate = ParseExactDate(csvReader.GetField<string>(2)),
+                        NumberOfUnits = csvReader.GetField<int>(3),
+                        GrantPrice = csvReader.GetField<decimal>(4)
+                    };
                     return newShareRecord;         
                 case "PERF":
-                    var employeeBonus = new EmployeeBonus();
-
-                    employeeBonus.Action = csvReader.GetField<string>(0);
-                    employeeBonus.EmployeeId = csvReader.GetField<string>(1);
-                    employeeBonus.BonusDate = DateTime.ParseExact(csvReader.GetField<string>(2), "yyyyMMdd",
-                            CultureInfo.InvariantCulture, DateTimeStyles.None);
-                    employeeBonus.Multiplier = csvReader.GetField<decimal>(3);
-
+                    var employeeBonus = new EmployeeBonus
+                    {
+                        Action = csvReader.GetField<string>(0),
+                        EmployeeId = csvReader.GetField<string>(1),
+                        BonusDate = ParseExactDate(csvReader.GetField<string>(2)),
+                        Multiplier = csvReader.GetField<decimal>(3)
+                    };
                     return employeeBonus;
                 case "SALE":
-                    var employeeSale = new EmployeeSale();
-
-                    employeeSale.Action = csvReader.GetField<string>(0);
-                    employeeSale.EmployeeId = csvReader.GetField<string>(1);
-                    employeeSale.SaleDate = DateTime.ParseExact(csvReader.GetField<string>(2), "yyyyMMdd",
-                            CultureInfo.InvariantCulture, DateTimeStyles.None);
-                    employeeSale.Quantity = csvReader.GetField<int>(3);
-                    employeeSale.MarketSellPrice = csvReader.GetField<decimal>(4);
-
+                    var employeeSale = new EmployeeSale
+                    {
+                        Action = csvReader.GetField<string>(0),
+                        EmployeeId = csvReader.GetField<string>(1),
+                        SaleDate = ParseExactDate(csvReader.GetField<string>(2)),
+                        Quantity = csvReader.GetField<int>(3),
+                        MarketSellPrice = csvReader.GetField<decimal>(4)
+                    };
                     return employeeSale;
                 default:
                     throw new InvalidInputException("Row type not supported.");                    
             }
+        }
+
+        private static DateTime ParseExactDate(string dateString)
+        {
+            return DateTime.ParseExact(dateString, "yyyyMMdd",
+                CultureInfo.InvariantCulture, DateTimeStyles.None);
         }
     }
 }

@@ -130,7 +130,7 @@ namespace SharePriceCalculator.Tests.ModelTests
             employeeShare.VestDate = DateTime.Now.AddDays(-1);
             employeeShare.NumberOfUnits = 1000;
 
-            Assert.IsTrue(employeeShare.CalculateGains(marketPrice, employeeBonus) == 2000.00M);
+            Assert.IsTrue(employeeShare.CalculateGains(marketPrice, employeeBonus, 0) == 2000.00M);
         }
     }
 }

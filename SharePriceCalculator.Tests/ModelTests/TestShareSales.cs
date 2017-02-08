@@ -37,8 +37,7 @@ namespace SharePriceCalculator.Tests.ModelTests
 
             var result = shareSell.CalculateSale(shares, bonuslist);
 
-            Assert.IsTrue(result == 412.50M);
-            
+            Assert.IsTrue(result == 275);            
         }
     }
 }

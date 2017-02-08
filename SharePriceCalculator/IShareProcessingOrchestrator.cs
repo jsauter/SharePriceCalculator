@@ -2,6 +2,6 @@
 {
     public interface IShareProcessingOrchestrator
     {
-        void Run();
+        void Run(string input);
     }
 }
