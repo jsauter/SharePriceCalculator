@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SharePriceCalculator.Core.Models
 {
@@ -9,15 +10,15 @@ namespace SharePriceCalculator.Core.Models
         public int NumberOfUnits { get; set; }
         public decimal GrantPrice { get; set; }
 
-        public decimal CalculateGain(MarketPrice marketPrice)
+        public decimal CalculateGains(MarketPrice marketPrice)
         {
             return CalculatePrice(marketPrice, 1.00M);
         }
-
-        public decimal CalculateGain(MarketPrice marketPrice, EmployeeBonus employeeBonus)
+    
+        public decimal CalculateGains(MarketPrice marketPrice, EmployeeBonus employeeBonus)
         {
             if(employeeBonus != null)
-                return CalculatePrice(marketPrice, employeeBonus.BonusDate > VestDate ? employeeBonus.Multiplier : 1.00M);
+                return CalculatePrice(marketPrice, GetMultiplier(employeeBonus, marketPrice));
 
             return CalculatePrice(marketPrice, 1.00M);            
         }
@@ -31,6 +32,11 @@ namespace SharePriceCalculator.Core.Models
             }
 
             return Math.Round((marketPrice.Price * (NumberOfUnits * bonusMultiplier)) - (GrantPrice * (NumberOfUnits * bonusMultiplier)), 2, MidpointRounding.AwayFromZero);
+        }
+
+        private decimal GetMultiplier(EmployeeBonus employeeBonus, MarketPrice marketPrice)
+        {
+            return (employeeBonus.BonusDate > VestDate && employeeBonus.BonusDate <= marketPrice.MarketPriceDate ? employeeBonus.Multiplier : 1.00M);
         }
 
     }

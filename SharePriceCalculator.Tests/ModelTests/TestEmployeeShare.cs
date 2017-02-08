@@ -22,7 +22,7 @@ namespace SharePriceCalculator.Tests.ModelTests
             employeeShare.VestDate = DateTime.Now.AddDays(1);
             employeeShare.NumberOfUnits = 1;
 
-            Assert.IsTrue(employeeShare.CalculateGain(marketPrice) == 0.00M);
+            Assert.IsTrue(employeeShare.CalculateGains(marketPrice) == 0.00M);
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace SharePriceCalculator.Tests.ModelTests
             employeeShare.VestDate = DateTime.Now.AddDays(1);
             employeeShare.NumberOfUnits = 1;
 
-            Assert.IsTrue(employeeShare.CalculateGain(marketPrice) == 0.00M);
+            Assert.IsTrue(employeeShare.CalculateGains(marketPrice) == 0.00M);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace SharePriceCalculator.Tests.ModelTests
             employeeShare.VestDate = DateTime.Now.AddDays(-1);
             employeeShare.NumberOfUnits = 1;
 
-            Assert.IsTrue(employeeShare.CalculateGain(marketPrice) == 1.00M);
+            Assert.IsTrue(employeeShare.CalculateGains(marketPrice) == 1.00M);
         }
 
         [TestMethod]
@@ -73,7 +73,7 @@ namespace SharePriceCalculator.Tests.ModelTests
             employeeShare.VestDate = DateTime.Now.AddDays(-1);
             employeeShare.NumberOfUnits = 1;
 
-            Assert.IsTrue(employeeShare.CalculateGain(marketPrice) == 1.00M);
+            Assert.IsTrue(employeeShare.CalculateGains(marketPrice) == 1.00M);
         }
 
         [TestMethod]
@@ -90,7 +90,7 @@ namespace SharePriceCalculator.Tests.ModelTests
             employeeShare.VestDate = DateTime.Now.AddDays(-1);
             employeeShare.NumberOfUnits = 1;
 
-            Assert.IsTrue(employeeShare.CalculateGain(marketPrice) == 1.01M);
+            Assert.IsTrue(employeeShare.CalculateGains(marketPrice) == 1.01M);
         }
 
         [TestMethod]
@@ -107,7 +107,7 @@ namespace SharePriceCalculator.Tests.ModelTests
             employeeShare.VestDate = DateTime.Now.AddDays(-1);
             employeeShare.NumberOfUnits = 1000;
 
-            Assert.IsTrue(employeeShare.CalculateGain(marketPrice) == 1000.00M);
+            Assert.IsTrue(employeeShare.CalculateGains(marketPrice) == 1000.00M);
         }
 
         [TestMethod]
@@ -130,7 +130,7 @@ namespace SharePriceCalculator.Tests.ModelTests
             employeeShare.VestDate = DateTime.Now.AddDays(-1);
             employeeShare.NumberOfUnits = 1000;
 
-            Assert.IsTrue(employeeShare.CalculateGain(marketPrice, employeeBonus) == 2000.00M);
+            Assert.IsTrue(employeeShare.CalculateGains(marketPrice, employeeBonus) == 2000.00M);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace SharePriceCalculator.Services
                     employeeSale.SaleDate = DateTime.ParseExact(csvReader.GetField<string>(2), "yyyyMMdd",
                             CultureInfo.InvariantCulture, DateTimeStyles.None);
                     employeeSale.Quantity = csvReader.GetField<int>(3);
-                    employeeSale.MarketSalePrice = csvReader.GetField<decimal>(4);
+                    employeeSale.MarketSellPrice = csvReader.GetField<decimal>(4);
 
                     return employeeSale;
                 default:

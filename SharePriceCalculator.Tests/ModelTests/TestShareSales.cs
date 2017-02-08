@@ -29,13 +29,16 @@ namespace SharePriceCalculator.Tests.ModelTests
 
             shareSell.Quantity = 500;
             shareSell.SaleDate = DateTime.Now;
-            shareSell.MarketSalePrice = 1.00M;
+            shareSell.MarketSellPrice = 1.00M;
 
             var bonuslist = new List<EmployeeBonus>();
             
             bonuslist.Add(bonus);
 
             var result = shareSell.CalculateSale(shares, bonuslist);
+
+            Assert.IsTrue(result == 412.50M);
+            
         }
     }
 }
